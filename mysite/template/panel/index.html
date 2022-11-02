@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KalKulAtor</title>
+</head>
+<body style="margin: flex;">
+    <nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1">KalKulAtor</span>
+      </nav>
+
+
+      <div class="d-flex" style="margin-bottom: 20rem;">
+        <div class="row">
+            <div class="col-md-6" style="margin: 1rem auto 2rem;">
+              <form method="post">
+                <label>Value1</label>
+                <input type="text" name="num1" class="form-control">
+                
+                <select name="opr" class="form-control">
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                    <option value="*">*</option>
+                    <option value="/">/</option>
+                </select>
+                <label>Value2</label>
+                <input type="text" name="num2" id = "num1"class="form-control">
+
+                <button type="submit" onclick="hesapla()">Hesapla
+                </button>
+                <label>Sonuc</label>
+                <input type="text" id="result" id="num2" class="form-control">
+
+              </form>
+            </div>
+        </div>
+      </div>
+
+      <script>
+        function hesapla(){
+            $ajax({
+                url: "read/",
+                data : {
+                    "num1":num1,
+                    "num2":num2
+
+                },
+                success: function(data){
+
+                }
+            })
+
+        }
+      </script>
+
+
+
+
+     
+</body>
+</html>
+
