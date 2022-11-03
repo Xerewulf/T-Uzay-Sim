@@ -4,24 +4,24 @@
       <div class="sidebar-wrapper">
         <div class="logo">
           <a target="_blank" rel="sponsored noopener noreferrer" 
-             href="https://appseed.us/admin-dashboards/django-dashboard-black" class="simple-text logo-mini">
-            PI
+             href="https://uzay.tubitak.gov.tr/" class="simple-text logo-mini">
+            Web Site
           </a>
           <a target="_blank" rel="sponsored noopener noreferrer" 
-             href="https://appseed.us/admin-dashboards/django-dashboard-black" class="simple-text logo-normal">
-            Django Black
+             class="simple-text logo-normal">
+            APPS
           </a>
         </div>
 
         <ul class="nav">
         {% if request.user.is_authenticated %}
 
-          <li class="{% if 'index' in segment %} active {% endif %}">
+<!--           <li class="{% if 'index' in segment %} active {% endif %}">
             <a href="/">
               <i class="tim-icons icon-chart-pie-36"></i>
               <p>Dashboard</p>
             </a>
-          </li>
+          </li> -->
           <li class="{% if 'icons' in segment %} active {% endif %}">
             <a href="/ui-icons.html">
               <i class="tim-icons icon-atom"></i>
@@ -35,18 +35,18 @@
             </a>
           </li>
           <li class="{% if 'notifications' in segment %} active {% endif %}">
-            <a href="/ui-notifications.html">
+            <a href="https://webmail.tubitak.gov.tr/">
               <i class="tim-icons icon-bell-55"></i>
-              <p>Notifications</p>
+              <p>Check your emails</p>
             </a>
           </li>
-          <li class="{% if 'page-user' in segment %} active {% endif %}">
+<!--           <li class="{% if 'page-user' in segment %} active {% endif %}">
             <a href="/page-user.html">
               <i class="tim-icons icon-single-02"></i>
               <p>User Profile</p>
             </a>
-          </li>
-          <li class="{% if 'tables' in segment %} active {% endif %}">
+          </li> -->
+<!--           <li class="{% if 'tables' in segment %} active {% endif %}">
             <a href="/ui-tables.html">
               <i class="tim-icons icon-puzzle-10"></i>
               <p>Table List</p>
@@ -57,25 +57,34 @@
               <i class="tim-icons icon-align-center"></i>
               <p>Typography</p>
             </a>
-          </li>
-          <li class="{% if 'rtl-support' in segment %} active {% endif %}">
+          </li> -->
+<!--           <li class="{% if 'rtl-support' in segment %} active {% endif %}">
             <a href="/page-rtl-support.html">
               <i class="tim-icons icon-world"></i>
               <p>RTL Support</p>
             </a>
-          </li>
+          </li> -->
           <li>
-            <a href="{% url 'logout' %}" >
+            <a href="{% url 'login' %}" >
               <i class="tim-icons icon-button-power"></i>
               <p>Logout</p>
             </a>
           </li>
+          
+          <li class="active">
+            <a target="_blank" 
+               href="/read">
+              <i class="tim-icons icon-spaceship"></i>
+              <p>Calculator for users </p>
+            </a>
+          </li> 
+
           {% else %}
           <li class="active">
             <a target="_blank" 
-               href="https://appseed.us/admin-dashboards/django-dashboard-black-pro">
+               href="/read">
               <i class="tim-icons icon-spaceship"></i>
-              <p>PRO Version</p>
+              <p>Calculator for every one </p>
             </a>
           </li>   
           {% endif %}

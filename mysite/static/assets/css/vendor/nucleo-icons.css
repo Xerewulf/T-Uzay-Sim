@@ -2,12 +2,12 @@
 
 @font-face {
   font-family: 'Nucleo';
-  src: url('../fonts/nucleo.eot');
-  src: url('../fonts/nucleo.eot') format('embedded-opentype'),
-    url('../fonts/nucleo.woff2') format('woff2'),
-    url('../fonts/nucleo.woff') format('woff'),
-    url('../fonts/nucleo.ttf') format('truetype'),
-    url('../fonts/nucleo.svg') format('svg');
+  src: url('../fonts/vendor/nucleo.eot');
+  src: url('../fonts/vendor/nucleo.eot') format('embedded-opentype'),
+    url('../fonts/vendor/nucleo.woff2') format('woff2'),
+    url('../fonts/vendor/nucleo.woff') format('woff'),
+    url('../fonts/vendor/nucleo.ttf') format('truetype'),
+    url('../fonts/vendor/nucleo.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
