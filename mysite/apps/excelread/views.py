@@ -1,42 +1,45 @@
 from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponse
-# Create your views here.
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.utils.decorators import method_decorator
+import json
 
+
+# Create your views here.
+# for user entry
+""" @method_decorator(login_required, name='dispatch')
+@method_decorator(user_passes_test(lambda u: u.has_perm('main.excelread'),login_url='permission_not_granted'), name='dispatch') """
 class IndexView(View):
     template_name = "index.html"
+
     def get(self,request,*args,**kwargs):
+       
         return render(request, self.template_name)
 
 
-    def POST(self,request,*args,**kwargs):
-    # now = datetime.datetime.now()
-    # html = "<html><body>It is now %s.</body></html>" % now
-    # return render(request,"index.html")
-        c=''
-        try:
-            if request.method == "POST":
-                n1 = eval(request.POST.get("num1"))
-                n2 = eval(request.POST.get("num2"))
-                opr = request.POST.get("opr")
+    def post(self, request, *args, **kwargs):
+        if request.POST["action"] == "getcalculate":
 
-                if opr == "+":
-                    res=n1+n2
-                elif opr == "-":
-                    res=n1-n2
-                elif opr == "*":
-                    res=n1*n2
-                elif opr == "/":
-                    res=n1/n2 
+            response_data = {}
+            num1 = int(request.POST.get("num1"))
+            num2 = int(request.POST.get("num2"))
+            opr = (request.POST.get("opr"))
+            
+            if opr == '+':
+                result = num1+num2
+            elif opr == '-':
+                result = num1-num2
+            elif opr == '/':
+                result = num1/num2
+            else:
+                result = num1*num2
+            print(result)
+            data = [{'resul': result}]
+    
+            response_data = result
 
-            c=res
-            print(c)
-        except:
-            print("hatali secim")
-        
-
-
-        return render(request, self.template_name, {"c":c})
+        return HttpResponse(json.dumps(response_data), content_type="application/json")
 
 
 

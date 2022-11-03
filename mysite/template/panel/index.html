@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KalKulAtor</title>
+
+    <script rel="javascript" type="text/javascript" href="js/jquery-1.11.3.min.js"></script>
 </head>
 <body style="margin: flex;">
     <nav class="navbar navbar-light bg-light">
@@ -16,41 +18,66 @@
       <div class="d-flex" style="margin-bottom: 20rem;">
         <div class="row">
             <div class="col-md-6" style="margin: 1rem auto 2rem;">
-              <form method="post">
+
                 <label>Value1</label>
-                <input type="text" name="num1" class="form-control">
+                <input type="text" id="num1" name="num11" class="form-control">
                 
-                <select name="opr" class="form-control">
+                <select name="opr" id="opr" class="form-control">
                     <option value="+">+</option>
                     <option value="-">-</option>
                     <option value="*">*</option>
                     <option value="/">/</option>
                 </select>
+
                 <label>Value2</label>
-                <input type="text" name="num2" id = "num1"class="form-control">
+                <input type="text" name="num12" id = "num2"class="form-control">
 
-                <button type="submit" onclick="hesapla()">Hesapla
-                </button>
+                <button type="button"  class="btn btn-primary" onclick="calculate_score()" >Calculate</button>
+                
                 <label>Sonuc</label>
-                <input type="text" id="result" id="num2" class="form-control">
-
-              </form>
+                <input type="text" id="result" name="results" class="form-control">
             </div>
         </div>
       </div>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-      <script>
-        function hesapla(){
-            $ajax({
-                url: "read/",
-                data : {
-                    "num1":num1,
-                    "num2":num2
+      <script type="text/javascript">
+        $( document ).ready(function() {
+            console.log( "ready!" );
+        });
+
+        function calculate_score(){
+         
+          document.getElementById("loaderbackround").style.visibility = "visible";
+            /*restartwithchanging();*/
+            $.ajax({  
+                type: "POST",
+                url: "",
+                cache: false,
+                traditional: true,
+                dataType: "json",
+                async: true,
+                data: {
+                    action: 'getcalculate',
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    num1: $('#num1').val(),
+                    num2: $('#num2').val(),
+                    opr: $('#opr').val()
 
                 },
-                success: function(data){
+                success: function (json) {
+                    document.getElementById("loaderbackround").style.visibility = "hidden";
+                    document.getElementById("result").value=json	
+                    alert("Success!")
+                   
 
+                },
+
+                error: function () {
+                    document.getElementById("loaderbackround").style.visibility = "hidden";
+                    alert('Calculation mistake')
                 }
+
             })
 
         }
@@ -59,7 +86,10 @@
 
 
 
-     
+    <div id="loaderbackround"
+    style="background-color: #0000008f;position: absolute;width: 100%;height: 100%;visibility: hidden;">
+    <div class="loader">Loading...</div>
+    </div>     
 </body>
 </html>
 
